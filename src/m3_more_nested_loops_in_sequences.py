@@ -53,11 +53,15 @@ def run_test_largest_number():
 
 
 def largest_number(seq_seq):
-    list_largest = []
-    largest = 0
+    largest = None
     for i in range(len(seq_seq)):
         sublist = seq_seq[i]
         for k in range(len(sublist)):
+            if largest == None:
+                largest = sublist[k]
+            if largest < sublist[k]:
+                largest = sublist[k]
+    return largest
 
     """
     Returns the largest number in the subsequences of the given
@@ -84,7 +88,7 @@ def largest_number(seq_seq):
     where each subsequence contains only numbers.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
 
@@ -92,7 +96,7 @@ def largest_number(seq_seq):
 def run_test_largest_negative_number():
     """ Tests the    largest_negative_number    function. """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # Done: 4. Implement this TEST function.
     #   It TESTS the  largest_negative_number  function defined below.
     #
     #   Include enough tests to give you confidence that your solution
@@ -102,9 +106,33 @@ def run_test_largest_negative_number():
     print('-------------------------------------------------')
     print('Testing the   LARGEST_NEGATIVE_NUMBER   function:')
     print('-------------------------------------------------')
+    # Test 1:
+    expected = -1
+    answer = largest_number(([0, 0, 0, 0, ], [0, -1, 0], [0, 0, 0, 0, 0]))
+    print('Expected and actual are:', expected, answer)
+
+    # Test 2:
+    expected = -5
+    answer = largest_number(([-1, -2, 0, -5,  4], [0, 1, 0], [10, 23, 4, 5]))
+    print('Expected and actual are:', expected, answer)
+
+    # Test 3:
+    expected = None
+    answer = largest_number(([10, 3], [0], [100, 200]))
+    print('Expected and actual are:', expected, answer)
 
 
 def largest_negative_number(seq_seq):
+    min = None
+    for i in range(len(seq_seq)):
+        sublist = seq_seq[i]
+        for j in range(len(sublist)):
+            if sublist[j] < 0:
+                if min == None:
+                    min = sublist[j]
+                if min < sublist[j]:
+                    min = sublist[j]
+    return min
     """
     Returns the largest NEGATIVE number in the given sequence of
     sequences of numbers.  Returns None if there are no negative numbers
