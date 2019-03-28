@@ -4,8 +4,8 @@ in the context of PRINTING on the CONSOLE.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and George Bulger.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
 def main():
@@ -39,6 +39,15 @@ def run_test_triangle_right_justified():
 
 
 def triangle_right_justified(r):
+    list = ''
+    for i in range(r + 1, -1, -1):
+        for j in range(i + 1):
+            if j < r:
+                list = list + ''
+            else:
+                list = list + str(j)
+        print(list)
+
     """
     Prints a triangle of numbers, with r rows.
     It looks the same as a previous example, but right-justified.
