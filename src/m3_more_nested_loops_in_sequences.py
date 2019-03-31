@@ -108,17 +108,17 @@ def run_test_largest_negative_number():
     print('-------------------------------------------------')
     # Test 1:
     expected = -1
-    answer = largest_number(([0, 0, 0, 0, ], [0, -1, 0], [0, 0, 0, 0, 0]))
+    answer = largest_negative_number(([0, 0, 0, 0, ], [0, -1, 0], [0, 0, 0, 0, 0]))
     print('Expected and actual are:', expected, answer)
 
     # Test 2:
     expected = -5
-    answer = largest_number(([-1, -2, 0, -5,  4], [0, 1, 0], [10, 23, 4, 5]))
+    answer = largest_negative_number(([-1, -2, 0, -5,  4], [0, 1, 0], [10, 23, 4, 5]))
     print('Expected and actual are:', expected, answer)
 
     # Test 3:
     expected = None
-    answer = largest_number(([10, 3], [0], [100, 200]))
+    answer = largest_negative_number(([10, 3], [0], [100, 200]))
     print('Expected and actual are:', expected, answer)
 
 
@@ -130,7 +130,7 @@ def largest_negative_number(seq_seq):
             if sublist[j] < 0:
                 if min == None:
                     min = sublist[j]
-                if min < sublist[j]:
+                if min > sublist[j]:
                     min = sublist[j]
     return min
     """
@@ -155,7 +155,7 @@ def largest_negative_number(seq_seq):
     where each subsequence contains only numbers.
     """
     # -------------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # CHALLENGE: Try to solve this problem with no additional sequences
@@ -363,6 +363,24 @@ def run_test_first_is_elsewhere_too():
 
 
 def first_is_elsewhere_too(seq_seq):
+    first_seq = seq_seq[0]
+    if len(first_seq) < 1:
+        return False
+    else:
+        for k in range(len(first_seq)):
+            first = first_seq[k]
+            count = 0
+            for i in range(1, len(seq_seq)):
+                sublist = seq_seq[i]
+                for j in range(len(sublist)):
+                    if sublist[j] == first:
+                        count = count + 1
+            if count > 0:
+                return True
+    return False
+
+
+
     """
     Given a sequence of subsequences:
       -- Returns True if any element of the first (initial) subsequence
@@ -395,7 +413,7 @@ def first_is_elsewhere_too(seq_seq):
     and the given argument is a sequence of sequences.
     """
     # -------------------------------------------------------------------------
-    # TODO: 6. Implement and test this function.
+    # DONE: 6. Implement and test this function.
     #          Some tests are already written for you (above).
     #
     # IMPLEMENTATION RESTRICTION:
